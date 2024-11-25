@@ -5,23 +5,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 @Entity
 @Table(name = "Employee")
-//@NotEmpty(message = "員工資訊不得為空")
 public class Employee {
 //基本資訊，如員工編號、姓名、年齡、部門和職位。
 
     @Id
-    //@NotEmpty(message = "員工編號不能為空")
+    @NotNull(message = "員工編號不能為空")
     private Long employeeId ;
+    @NotEmpty(message = "姓名不能為空")
     private String name;
 
-    //@Min(value = 18, message = "年齡必須大於或等於 18") //如果有需要可以限制年齡，service要有valid驗證
+    //@Min(value = 18, message = "年齡必須大於或等於 18") //如果有需要可以限制年齡，要有valid驗證
+    @NotNull(message = "年齡不能為空")
     private Integer age;
+    @NotEmpty(message = "部門不能為空")
     private String department;
+    @NotEmpty(message = "職位不能為空")
     private String position;
 
     public Employee() {
@@ -39,6 +43,7 @@ public class Employee {
         return employeeId;
     }
 
+    //不開放修改員工編號
 //    public void setEmployeeId(Long employeeId) {
 //        this.employeeId = employeeId;
 //    }

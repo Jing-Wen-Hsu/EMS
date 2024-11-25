@@ -20,7 +20,7 @@ public class EmployeeController {
 
     // 新增員工
     @PostMapping("/")
-    public ResponseEntity<String> createEmployee(@RequestBody  Employee employee){
+    public ResponseEntity<String> createEmployee(@Valid @RequestBody  Employee employee){
 
         String createResult = employeeService.addEmployee(employee);
         return ResponseEntity.ok(createResult);
